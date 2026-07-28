@@ -1,0 +1,46 @@
+name: Binance Alpha Scanner
+
+on:
+  schedule:
+    # 每4小时扫描一次 (0, 4, 8, 12, 16, 20 UTC = 8, 12, 16, 20, 0, 4 北京时间)
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+    # 手动触发
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install surf
+        run: |
+          curl -LsSf https://surfagent.dev/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install requests aiohttp
+
+      - name: Run Alpha Scanner
+        env:
+          SURF_API_KEY: ${{ secrets.SURF_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          cd scanner
+          python binance_alpha_scanner_v6_arkham.py
+
+      - name: Upload scan output
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-scan-output
+          path: scanner/alpha_scan_output.md
+          retention-days: 7

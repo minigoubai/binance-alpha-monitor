@@ -1,0 +1,6 @@
+{
+  "MIN_SCORE": 100,
+  "MIN_LIQUIDITY": 20000,
+  "MIN_HOLDERS": 500,
+  "EXTEND_TO_MEME": false
+}
