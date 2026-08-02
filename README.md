@@ -15,35 +15,35 @@
 
 ## 🏆 Historical Performance | 历史战绩
 
-| Token | Tier | Signal | Signal Date | Signal Price | Post-Signal High | **Gain** |
-|-------|------|--------|------------|--------------|-----------------|----------|
-| **BANK** | A+ | ACCUMULATION | 2025-06-09 | $0.0433 | $0.3797 (2025-07-26) | **🔴 +777%** |
-| **SENT** | A | BREAKOUT | 2026-01-22 | $0.0299 | $0.0480 (2026-01-31) | **🔴 +60.5%** |
-| **AERO** | A | DISTRIBUTION | 2026-07-17 | $0.3440 | $0.5180 (2026-07-17) | **🔴 +50.6%** |
-| **BANANAS31** | A+ | BREAKOUT | 2025-06-15 | $0.0108 | $0.0148 (2026-06-18) | **🟡 +37.0%** |
-| **ZBT** | A | BREAKOUT | 2025-07-02 | $0.1330 | $0.1584 (2025-07-10) | **🟠 +19.1%** |
-| VIRTUAL | A | DISTRIBUTION | 2025-06-09 | $2.0123 | — | ⚪ Signal lagged (ATH before signal) |
-| BEAT/WOD/TRADOOR/RIVER/DN/Fartcoin/Q | A/A+ | Various | 2025–2026 | Various | — | ⚪ No Binance spot pair |
+| 代币 Token | 评级 Tier | 信号 Signal | 信号日 Date | 信号价 Price | 信号后最高 High | **涨幅 Gain** |
+|------------|-----------|------------|-------------|--------------|----------------|--------------|
+| **BANK** | A+ | 吸筹 ACCUMULATION | 2025-06-09 | $0.0433 | $0.3797 | **🔴 +777%** |
+| **SENT** | A | 突破 BREAKOUT | 2026-01-22 | $0.0299 | $0.0480 | **🔴 +60.5%** |
+| **AERO** | A | 派发 DISTRIBUTION | 2026-07-17 | $0.3440 | $0.5180 | **🔴 +50.6%** |
+| **BANANAS31** | A+ | 突破 BREAKOUT | 2025-06-15 | $0.0108 | $0.0148 | **🟡 +37.0%** |
+| **ZBT** | A | 突破 BREAKOUT | 2025-07-02 | $0.1330 | $0.1584 | **🟠 +19.1%** |
+| VIRTUAL | A | 派发 DISTRIBUTION | 2025-06-09 | $2.0123 | — | ⚪ 信号滞后（最高在信号前） |
+| BEAT/WOD/TRADOOR/RIVER/DN/Fartcoin/Q | A/A+ | 多方向 Various | 2025–2026 | — | — | ⚪ 无Binance现货 |
 
 > 数据来源：`alpha_signal_replay.json`（6,189条信号）截至2026-08-02
 > Source: `alpha_signal_replay.json` (6,189 signals) as of 2026-08-02
 
 **信号方向 vs 实际效果 | Signal Direction vs Reality:**
-- **ACCUMULATION** → 🟢 最强买入信号（BANK +777%）
-- **BREAKOUT** → 🟢 高胜率信号（SENT +60.5%、AERO +50.6%）
-- **DISTRIBUTION** → ⚠️ 不可做空！AERO在DISTRIBUTION信号后仍+50.6%
+- **ACCUMULATION（吸筹）** → 🟢 最强买入信号（BANK +777%）
+- **BREAKOUT（突破）** → 🟢 高胜率信号（SENT +60.5%、AERO +50.6%）
+- **DISTRIBUTION（派发）** → ⚠️ 不可做空！AERO在DISTRIBUTION信号后仍+50.6%
 
 ---
 
 ## Features | 功能
 
-| Feature | 功能 |
-|--------|------|
-| **Alpha Scanner** — Scans 650+ tokens every 4 hours, filters by Score / liquidity | **Alpha 扫描** — 每4小时自动扫描650+代币，按 Score/流动性过滤 |
-| **Chip Analysis** — Operator / CEX Pool / Verifiable Retail classification | **筹码分析** — Operator/CEX Pool/Verifiable Retail 五分法分类 |
-| **Smart Money Tracking** — Arkham + Surf on-chain flow analysis | **聪明钱追踪** — Arkham + Surf 链上转账追溯 |
-| **Telegram Alerts** — A+ / A / B tier alerts with chip signals | **Telegram 警报** — A+/A/B 分级警报 + 筹码信号 |
-| **Daily Review** — Tracks post-alert price action, publishes to Binance Square | **每日复盘** — 追踪警报后价格走势，自动发布到 Binance Square |
+| 功能 Feature | 说明 Description |
+|------------|----------------|
+| **Alpha 扫描 Alpha Scanner** | 每4小时自动扫描650+代币，按 Score/流动性过滤 Scans 650+ tokens every 4h, filters by Score/liquidity |
+| **筹码分析 Chip Analysis** | Operator/CEX Pool/Verifiable Retail 五分法分类 Operator / CEX Pool / Verifiable Retail classification |
+| **聪明钱追踪 Smart Money Tracking** | Arkham + Surf 链上转账追溯 Arkham + Surf on-chain flow analysis |
+| **Telegram 警报 Telegram Alerts** | A+/A/B 分级警报 + 筹码信号 A+ / A / B tier alerts with chip signals |
+| **每日复盘 Daily Review** | 追踪警报后价格走势，自动发布到 Binance Square Tracks post-alert price action, publishes to Binance Square |
 
 ---
 
