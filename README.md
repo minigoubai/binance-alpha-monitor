@@ -13,6 +13,28 @@
 
 ---
 
+## 🏆 Historical Performance | 历史战绩
+
+| Token | Tier | Signal | Signal Date | Signal Price | Post-Signal High | **Gain** |
+|-------|------|--------|------------|--------------|-----------------|----------|
+| **BANK** | A+ | ACCUMULATION | 2025-06-09 | $0.0433 | $0.3797 (2025-07-26) | **🔴 +777%** |
+| **SENT** | A | BREAKOUT | 2026-01-22 | $0.0299 | $0.0480 (2026-01-31) | **🔴 +60.5%** |
+| **AERO** | A | DISTRIBUTION | 2026-07-17 | $0.3440 | $0.5180 (2026-07-17) | **🔴 +50.6%** |
+| **BANANAS31** | A+ | BREAKOUT | 2025-06-15 | $0.0108 | $0.0148 (2026-06-18) | **🟡 +37.0%** |
+| **ZBT** | A | BREAKOUT | 2025-07-02 | $0.1330 | $0.1584 (2025-07-10) | **🟠 +19.1%** |
+| VIRTUAL | A | DISTRIBUTION | 2025-06-09 | $2.0123 | — | ⚪ Signal lagged (ATH before signal) |
+| BEAT/WOD/TRADOOR/RIVER/DN/Fartcoin/Q | A/A+ | Various | 2025–2026 | Various | — | ⚪ No Binance spot pair |
+
+> 数据来源：`alpha_signal_replay.json`（6,189条信号）截至2026-08-02
+> Source: `alpha_signal_replay.json` (6,189 signals) as of 2026-08-02
+
+**信号方向 vs 实际效果 | Signal Direction vs Reality:**
+- **ACCUMULATION** → 🟢 最强买入信号（BANK +777%）
+- **BREAKOUT** → 🟢 高胜率信号（SENT +60.5%、AERO +50.6%）
+- **DISTRIBUTION** → ⚠️ 不可做空！AERO在DISTRIBUTION信号后仍+50.6%
+
+---
+
 ## Features | 功能
 
 | Feature | 功能 |
@@ -78,6 +100,7 @@ binance-alpha-monitor/
 │   ├── alpha_square_post_v2.py               # Binance Square poster
 │   └── alpha_params.json                     # Scan parameters
 ├── references/
+│   ├── alpha-historical-alerts.md           # Historical performance (full report)
 │   ├── binance-alpha-scanner-v6-bugs.md     # Bug log
 │   ├── telegram-push-pattern.md              # Telegram setup
 │   ├── alpha-review-pipeline.md             # Review pipeline
