@@ -1,88 +1,175 @@
 # Binance Alpha Monitor
+# Binance Alpha 筹码监控
 
-Binance Alpha 代币自动扫描 + 筹码分析 + Telegram 推送。
+> English below / 中文往下
 
-## 功能
+---
 
-- **Alpha 扫描**：每4小时自动扫描 Binance Alpha 650+ 代币，按 Score/流动性过滤
-- **筹码分析**：融合 HertzFlow 五分法（Operator/CEX Pool/Verifiable Retail） + Arkham/Surf 链上流
-- **Telegram 推送**：扫描结果自动推送到指定 Telegram 频道/群组
-- **每日复盘**：追踪扫描后价格变化，自动生成复盘报告并发布到 Binance Square
+## Overview | 概览
 
-## 快速开始
+**Binance Alpha Monitor** is an automated token monitoring and chip analysis framework for Binance Alpha tokens. It combines HertzFlow's 5-factor methodology with Surf free tier and Arkham intelligence to track holder distribution, detect smart money flows, and deliver alerts via Telegram.
 
-### 1. 安装依赖
+**Binance Alpha 筹码监控** 是一套全自动的 Binance Alpha 代币监控系统。融合 HertzFlow 五分法筹码分析、Surf 免费链上数据和 Arkham 情报追踪，持仓分布、聪明钱流向、警报推送一体化。
+
+---
+
+## Features | 功能
+
+| Feature | 功能 |
+|--------|------|
+| **Alpha Scanner** — Scans 650+ tokens every 4 hours, filters by Score / liquidity | **Alpha 扫描** — 每4小时自动扫描650+代币，按 Score/流动性过滤 |
+| **Chip Analysis** — Operator / CEX Pool / Verifiable Retail classification | **筹码分析** — Operator/CEX Pool/Verifiable Retail 五分法分类 |
+| **Smart Money Tracking** — Arkham + Surf on-chain flow analysis | **聪明钱追踪** — Arkham + Surf 链上转账追溯 |
+| **Telegram Alerts** — A+ / A / B tier alerts with chip signals | **Telegram 警报** — A+/A/B 分级警报 + 筹码信号 |
+| **Daily Review** — Tracks post-alert price action, publishes to Binance Square | **每日复盘** — 追踪警报后价格走势，自动发布到 Binance Square |
+
+---
+
+## Quick Start | 快速开始
+
+### 1. Install Dependencies | 安装依赖
 
 ```bash
 surf install
 surf sync
 ```
 
-### 2. 配置 Telegram Bot Token
+### 2. Configure Telegram Bot | 配置 Telegram Bot
 
-在 `~/.hermes/scripts/` 目录下创建 `telegram_token.txt`，写入你的 Bot Token。
+```bash
+# Create token file
+echo "YOUR_BOT_TOKEN" > ~/.hermes/scripts/telegram_token.txt
+```
 
-### 3. 运行扫描
+### 3. Run Scanner | 运行扫描
 
 ```bash
 cd ~/.hermes/scripts
 PYTHONUNBUFFERED=1 python3 binance_alpha_scanner_v6_arkham.py
 ```
 
-### 4. 配置定时任务（Cron）
+### 4. Set Up Cron Jobs | 配置定时任务
 
 ```bash
-# 每4小时扫描一次
-hermes cron add --name "Binance Alpha 每4小时扫描" \
+# Scan every 4 hours
+hermes cron add --name "Binance Alpha Scan" \
   --schedule "0 */4 * * *" \
   --repeat forever \
-  --deliver "telegram:你的chat_id" \
+  --deliver "telegram:YOUR_CHAT_ID" \
   --script binance_alpha_scanner_v6_arkham.py
 
-# 扫描完成后自动复盘
-hermes cron add --name "Alpha 扫描复盘闭环" \
+# Auto review after each scan
+hermes cron add --name "Alpha Review Loop" \
   --schedule "5 */4 * * *" \
   --repeat forever \
   --script alpha_review_loop.py
 ```
 
-## 目录结构
+---
+
+## Directory Structure | 目录结构
 
 ```
 binance-alpha-monitor/
-├── SKILL.md                          # 方法论文档（你正在读这个）
+├── SKILL.md                              # Method guide (EN/CN)
 ├── scanner/
-│   ├── binance_alpha_scanner_v6_arkham.py   # 主扫描脚本
-│   ├── alpha_review_loop.py                   # 复盘闭环
-│   ├── alpha_square_post_v2.py               # Binance Square 发帖
-│   └── alpha_params.json                     # 扫描参数配置
+│   ├── binance_alpha_scanner_v6_arkham.py   # Main scanner
+│   ├── alpha_review_loop.py                   # Post-scan review
+│   ├── alpha_square_post_v2.py               # Binance Square poster
+│   └── alpha_params.json                     # Scan parameters
 ├── references/
-│   ├── binance-alpha-scanner-v6-bugs.md      # 已知 Bug 记录
-│   ├── telegram-push-pattern.md              # Telegram 推送模式
-│   ├── alpha-review-pipeline.md              # 复盘流程文档
-│   └── wash-trading-detection.py             # Wash Trading 检测
-└── outputs/                         # 扫描输出（自动生成）
+│   ├── binance-alpha-scanner-v6-bugs.md     # Bug log
+│   ├── telegram-push-pattern.md              # Telegram setup
+│   ├── alpha-review-pipeline.md             # Review pipeline
+│   └── wash-trading-detection.py            # Wash trading detector
+└── outputs/                                 # Auto-generated
     ├── alpha_scan_output.md
     ├── alpha_combined_report.md
     └── alpha_review_loop_report.json
 ```
 
-## 评分系统
+---
 
-| 等级 | 分数 | 动作 |
-|------|------|------|
-| A+ | 80+ | 🔴 PREPARE — 立即关注 |
-| A | 65-79 | 🟠 重点跟踪 |
-| B | 50-64 | 🟡 等待确认 |
+## Rating System | 评分系统
 
-## 筹码信号
+| Tier | Score | Action | 等级 | 分数 | 动作 |
+|------|-------|--------|------|------|------|
+| **A+** | 80+ | 🔴 PREPARE — Immediate attention | **A+** | 80+ | 🔴 立即关注 |
+| **A** | 65–79 | 🟠 Track — Watch closely | **A** | 65–79 | 🟠 重点跟踪 |
+| **B** | 50–64 | 🟡 Wait — Confirm first | **B** | 50–64 | 🟡 等待确认 |
 
-| 信号 | 含义 |
-|------|------|
-| 🟢 建仓 | VC/鲸鱼买入 + CEX 净流出 |
-| 🔴 出货 | CEX 净流入 + 无 VC 承接 |
-| ⚪ 中性 | 数据不足或信号模糊 |
+---
 
-## 免责声明
+## Chip Signals | 筹码信号
+
+| Signal | Meaning | 信号 | 含义 |
+|--------|---------|------|------|
+| 🟢 Accumulation | VC / Whale buying + CEX net outflow | 🟢 吸筹 | VC/鲸鱼买入 + CEX净流出 |
+| 🔴 Distribution | CEX net inflow + no VC support | 🔴 派发 | CEX净流入 + 无VC承接 |
+| ⚪ Neutral | Insufficient data or mixed signals | ⚪ 中性 | 数据不足或信号模糊 |
+
+---
+
+## Chip Lifecycle Stages | 筹码生命周期阶段
+
+| Stage | Logic | 阶段 | 逻辑 |
+|-------|-------|------|------|
+| 🟢 Accumulating | DEX net inflow + CEX% drop + unknown% drop | 🟢 吸筹中 | DEX净流入 + CEX%下降 + 未知地址%下降 |
+| 🔴 Distributing | DEX net outflow + CEX% rise + unknown% rise | 🔴 派发中 | DEX净流出 + CEX%上升 + 未知地址%上升 |
+| 🔵 Pumping | Price up + volume surge + chips not distributed | 🔵 拉升中 | 价格大涨 + 成交量放大 + 筹码未明显分散 |
+| ⚪ Consolidating | No significant change across metrics | ⚪ 横盘整理 | 各指标无明显变化 |
+| 🟡 Warning | CEX% or unknown% spike suddenly | 🟡 预警 | CEX%或未知地址%突然大增 |
+
+---
+
+## Data Sources | 数据来源
+
+| Tier | Tool | Coverage | 数据层 | 工具 | 覆盖范围 |
+|------|------|----------|--------|------|----------|
+| Free | Surf `token-holders` / `token-transfers` | 90% of analysis | 免费 | Surf `token-holders` / `token-transfers` | 90% 分析需求 |
+| Free | `onchain-sql` | Mint event tracing | 免费 | `onchain-sql` | Mint 事件追溯 |
+| Paid | HertzFlow forensic | Full Rule 11 trace, CEX tier | 付费 | HertzFlow forensic | 完整Rule 11追溯，CEX分层 |
+
+---
+
+## ⚠️ Key Traps | 关键陷阱
+
+### 1. Two Score Systems Exist | 两套评分系统并存
+
+The Alpha API returns a **thousand-point score** (0–111+). The A+/A/B tier uses a **separate internal 0–100 score**. These are NOT the same.
+
+Alpha API 返回**千分制**分数 (0–111+)，A+/A/B 分级使用**另一套内部百分制**。两者完全不同。
+
+```
+Alpha API score (thousand-point) → filter candidate pool
+    ↓
+Internal 0–100 score → A+/A/B tier
+    ↓
+A+ requires: internal score ≥ 80 + multi-signal confluence
+```
+
+### 2. Pre-listing Trap | 预上市陷阱
+
+Alpha API data may show holders / liquidity BEFORE the token actually deploys on-chain. Always verify with `eth_getCode` on the contract address.
+
+Alpha API 可能在代币实际上链前就显示 holders / 流动性数据。用 `eth_getCode` 验证合约是否真正部署。
+
+### 3. Wash Trading Detection | 洗售交易检测
+
+Many early Alpha tokens use wash trading. Look for: proxy contracts bouncing tiny amounts back and forth between each other.
+
+早期 Alpha 代币常见洗售交易。特征：代理合约之间互相来回转移极小额代币。
+
+---
+
+## Disclaimer | 免责声明
+
+This tool is for educational and research purposes only. It does NOT constitute investment advice. Cryptocurrency trading involves substantial risk — DYOR.
 
 本工具仅供学习和研究使用，不构成投资建议。加密货币投资有风险，请DYOR。
+
+---
+
+## License | 许可证
+
+MIT License
